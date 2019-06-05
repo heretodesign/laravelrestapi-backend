@@ -76,6 +76,6 @@ class TodosController extends Controller
     {
         $todo->delete();
 
-        return response('Deleted a todo item from your Dashboard', 200);
+        return response()->json('Successfully updated', 204);
     }
 }
