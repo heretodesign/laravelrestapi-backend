@@ -19,6 +19,7 @@ class CreateTodosTable extends Migration
             $table->string('due');
             $table->string('done');
             $table->boolean('completed')->default(false);
+            $table->boolean('is_trash')->default(false);
             $table->timestamps();
         });
     }

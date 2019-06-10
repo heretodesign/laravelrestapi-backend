@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
-  protected $fillable = ['text', 'due', 'done', 'completed'];
+  protected $fillable = ['text', 'due', 'done', 'completed', 'is_trash'];
   protected $hidden = ['created_at', 'updated_at'];
 
 
@@ -27,6 +27,11 @@ class Todo extends Model
       if (array_has($attributes, 'completed')) {
           $this->list_of_dates = array_get($attributes,'completed');
       }
+
+      if (array_has($attributes, 'is_trash')) {
+          $this->is_trash = array_get($attributes,'is_trash');
+      }
+
 
       $this->save();
   }

@@ -20,8 +20,8 @@ $factory->define(Todo::class, function (Faker $faker) {
     return [
         'text' => $faker->sentence,
         'due' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'done' => $faker->date($format = 'Y-m-d', $max = 'now'), 
-        'completed' => intval($faker->boolean(0))
+        'done' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'completed' => intval($faker->boolean(0)),
+        'is_trash' => intval($faker->boolean(0))
     ];
 });
-
