@@ -38,7 +38,6 @@ class TodosController extends Controller
         return response()->json('Successfully added');
     }
 
-
     /**
      * Display the specified resource.
      *
@@ -115,7 +114,7 @@ class TodosController extends Controller
       $todo->completed = true;
       $todo->update();
 
-      return response()->json('Todo updated!');
+      return response()->json('Mark Complete Successful!');
     }
 
     /**
@@ -135,7 +134,7 @@ class TodosController extends Controller
     }
 
     /**
-     * Mark as complete the specified resource in storage.
+     * Mark as trash the specified resource in storage.
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -148,6 +147,22 @@ class TodosController extends Controller
       $todo->update();
 
       return response()->json('Marked As Trash updated!');
+    }
+
+    /**
+     * restore trash the specified resource in storage.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreTrash(Request $request, $id)
+    {
+      // search for the $todo row based on the id
+      $todo = Todo::findOrFail($id);
+      $todo->is_trash = false;
+      $todo->update();
+
+      return response()->json('Marked As Trash Restored!');
     }
 
     /**
@@ -180,4 +195,13 @@ class TodosController extends Controller
       return Todo::where('completed', 0)->get();
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function restore()
+    {
+      return Todo::where('is_trash', 0)->get();
+    }
 }

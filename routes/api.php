@@ -23,3 +23,4 @@ Route::put('/todos/{todo}/complete', 'TodosController@markAsCompleted');
 Route::put('/todos/{todo}/incomplete', 'TodosController@markIncomplete');
 
 Route::put('/todos/{todo}/trash', 'TodosController@markAsTrash');
+Route::put('/todos/{todo}/restore', 'TodosController@restoreTrash');
