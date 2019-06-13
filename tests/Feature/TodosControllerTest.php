@@ -61,22 +61,11 @@ class TodosControllerTest extends TestCase
     /**
      * @test
      */
-    // public function a_user_can_view_a_todo()
-    // {
-    //     $todos = factory(Todo::class, 25)->create();
-    //
-    //     $this->get('todos/' . $todos[15]->id)
-    //     ->assertSee($todos[15]->text);
-    // }
-
-    /**
-     * @test
-     */
     public function a_user_can_update_a_todo()
     {
 
-        $todo = factory(Todo::class)->create();
-        $response  = $this->json('GET', '/api/todos');
+        $todo = factory(Todo::class, 25)->create();
+        $response  = $this->json('PUT', '/api/todos');
         $response->assertStatus(200);
 
         $todos     = $response->getData()[0];
@@ -97,10 +86,10 @@ class TodosControllerTest extends TestCase
       $response = $this->json('GET', '/api/todos');
       $response->assertStatus(200);
 
-        $todo    = $response->getData()[0];
+      $todo    = $response->getData()[5];
 
-        $update   = $this->json('DELETE', '/api/todos/'.$todo->id);
-        $update->assertStatus(200);
-        $update->assertJson(['message' => "Todos Deleted!"]);
+      $update   = $this->json('DELETE', '/api/todos/'.$todo->id);
+      $update->assertStatus(200);
+      $update->assertJson(['message' => "Todos Deleted!"]);
     }
 }
